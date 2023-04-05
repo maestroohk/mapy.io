@@ -27,10 +27,10 @@ if (navigator.geolocation) {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup('Running.<br> Sprints.')
-        .openPopup();
+      map.on('click', mapEvent => {
+        const { lat, lng } = mapEvent.latlng;
+        L.marker([lat, lng]).addTo(map).bindPopup('Workout').openPopup();
+      });
     },
     () => {
       console.log("Couldn't get your location");
