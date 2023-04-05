@@ -29,7 +29,7 @@ if (navigator.geolocation) {
 
       L.marker(coords)
         .addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .bindPopup('Running.<br> Sprints.')
         .openPopup();
     },
     () => {
