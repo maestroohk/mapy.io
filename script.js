@@ -162,7 +162,7 @@ class App {
     // Display Marker
 
     // Render workout on list
-    renderWorkoutMarker(workout);
+    this.renderWorkoutMarker(workout);
 
     // Hide form + Clear inputs
     inputDistance.value =
