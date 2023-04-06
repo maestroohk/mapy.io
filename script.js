@@ -22,7 +22,7 @@ if (navigator.geolocation) {
 
       const coords = [latitude, longitude];
 
-      map = L.map('map').setView(coords, 17);
+      map = L.map('map').setView(coords, 15);
 
       L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution:
