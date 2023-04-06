@@ -36,7 +36,7 @@ if (navigator.geolocation) {
       });
     },
     () => {
-      console.log("Couldn't get your location");
+      console.log('Something went wrong');
     }
   );
 }
