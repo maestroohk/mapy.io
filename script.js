@@ -301,9 +301,25 @@ class App {
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('WORKOUTS'));
     if (!data) return;
-    this.#workouts = data;
+    // this.#workouts = data;
 
     this.#workouts.forEach(workout => this._renderWorkout(workout));
+
+    data.forEach(work => {
+      if (work.type === 'running') {
+        // prettier-ignore
+        this.workout = new Running(work.coords, work.distance, work.duration, work.running);
+      }
+
+      if (work.type === 'cycling') {
+        // prettier-ignore
+        this.workout = new Cycling(work.coords, work.distance, work.duration, work.cadence);
+      }
+
+      this.#workouts.push(this.workout);
+    });
+
+    console.log(this.#workouts);
   }
 
   reset() {
