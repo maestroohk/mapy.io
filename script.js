@@ -277,21 +277,13 @@ class App {
   }
 
   _moveToPopup(e) {
-    console.log('THIS!!!');
-    console.log(this);
-
     const workoutEl = e.target.closest('.workout');
-    console.log('Workout Element ID');
-    console.log(workoutEl.dataset.id);
 
     if (!workoutEl) return;
 
-    const workout = this.#workouts.find(workout => {
-      console.log(workout.id);
-      console.log(workout.coords);
-      console.log(workout);
-      +workout.id === +workoutEl.dataset.id;
-    });
+    const workout = this.#workouts.find(
+      workout => +workout.id === +workoutEl.dataset.id
+    );
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -299,8 +291,7 @@ class App {
     });
 
     // using the public interface
-    workout.click();
-    this._setLocalStorage();
+    // workout.click();
   }
 
   _setLocalStorage() {
@@ -314,28 +305,7 @@ class App {
     const data = JSON.parse(localStorage.getItem('WORKOUTS'));
     if (!data) return;
 
-    console.log('RETURNED FROM LS');
-    console.log(data);
-
-    let workout;
-
-    data.forEach(work => {
-      if (work.type === 'running') {
-        // prettier-ignore
-        // workout = new Running(work.coords, work.distance, work.duration, work.cadence, work.id);
-        workout = new Running(work.coords, work.distance, work.duration, work.cadence);
-        workout.id = work.id;
-      }
-
-      if (work.type === 'cycling') {
-        // prettier-ignore
-        // workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain, work.id);
-        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain);
-        workout.id = work.id;
-      }
-
-      this.#workouts.push(workout);
-    });
+    this.#workouts = data;
 
     this.#workouts.forEach(workout => this._renderWorkout(workout));
   }
