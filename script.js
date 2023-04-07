@@ -285,8 +285,9 @@ class App {
 
     const workout = this.#workouts.find(workout => {
       console.log(workout.id);
+      console.log(workout.coords);
       console.log(workout);
-      workout.id === workoutEl.dataset.id;
+      +workout.id === +workoutEl.dataset.id;
     });
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
