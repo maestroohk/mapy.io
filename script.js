@@ -277,6 +277,9 @@ class App {
   }
 
   _moveToPopup(e) {
+    console.log('THIS!!!');
+    console.log(this);
+
     const workoutEl = e.target.closest('.workout');
     console.log('Workout Element ID');
     console.log(workoutEl.dataset.id);
