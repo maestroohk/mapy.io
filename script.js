@@ -10,7 +10,6 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class Workout {
   date = new Date();
-  //   id = (Date.now() + '').slice(-10);
   clicks = 0;
 
   constructor(coords, distance, duration, id = (Date.now() + '').slice(-10)) {
@@ -294,8 +293,6 @@ class App {
     // using the public interface
     workout.click();
     this._setLocalStorage();
-    // console.log('CLICKED!!!');
-    // console.log(e.target);
   }
 
   _setLocalStorage() {
