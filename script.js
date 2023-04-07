@@ -303,11 +303,17 @@ class App {
 
   _setLocalStorage() {
     localStorage.setItem('WORKOUTS', JSON.stringify(this.#workouts));
+
+    console.log('SET WORKOUTS');
+    console.log(this.#workouts);
   }
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('WORKOUTS'));
     if (!data) return;
+
+    console.log('RETURNED FROM LS');
+    console.log(data);
 
     let workout;
 
