@@ -41,8 +41,8 @@ class Workout {
 class Running extends Workout {
   type = 'running';
 
-  constructor(coords, distance, duration, cadence) {
-    super(coords, distance, duration);
+  constructor(coords, distance, duration, id, cadence) {
+    super(coords, distance, duration, id);
     this.cadence = cadence;
 
     this.calcPace();
@@ -59,8 +59,8 @@ class Running extends Workout {
 class Cycling extends Workout {
   type = 'cycling';
 
-  constructor(coords, distance, duration, elevationGain) {
-    super(coords, distance, duration);
+  constructor(coords, distance, duration, id, elevationGain) {
+    super(coords, distance, duration, id);
     this.elevationGain = elevationGain;
 
     this.calcSpeed();
