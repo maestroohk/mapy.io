@@ -292,7 +292,8 @@ class App {
 
     // using the public interface
     workout.click();
-    this._setLocalStorage();
+    console.log('CLICKED!!!');
+    console.log(workout);
   }
 
   _setLocalStorage() {
