@@ -28,7 +28,7 @@ class Workout {
   }
 
   click() {
-    this.click++;
+    this.clicks++;
   }
 }
 
