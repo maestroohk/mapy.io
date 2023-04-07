@@ -17,7 +17,7 @@ class Workout {
     coords,
     distance,
     duration,
-    id = (+(Date.now() + '').slice(-10) + coords[0]) / coords[1]
+    id = Math.round((+(Date.now() + '').slice(-10) + coords[0]) / coords[1])
   ) {
     this.coords = coords; //[lat, lng]
     this.distance = distance; //in km
