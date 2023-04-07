@@ -190,6 +190,9 @@ class App {
     // Add new object to workout array
     this.#workouts.push(workout);
 
+    console.log('ORIGINAL WORKOUTS ARRAY');
+    console.log(this.#workouts);
+
     // Render workout on map as marker
     // Display Marker
     this._renderWorkoutMarker(workout);
@@ -303,21 +306,25 @@ class App {
     if (!data) return;
     // this.#workouts = data;
 
-    this.#workouts.forEach(workout => this._renderWorkout(workout));
+    // this.#workouts.forEach(workout => this._renderWorkout(workout));
+
+    let workout;
 
     data.forEach(work => {
       if (work.type === 'running') {
         // prettier-ignore
-        this.workout = new Running(work.coords, work.distance, work.duration, work.running);
+        workout = new Running(work.coords, work.distance, work.duration, work.cadence);
       }
 
       if (work.type === 'cycling') {
         // prettier-ignore
-        this.workout = new Cycling(work.coords, work.distance, work.duration, work.cadence);
+        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain);
       }
 
-      this.#workouts.push(this.workout);
+      this.#workouts.push(workout);
     });
+
+    this.#workouts.forEach(workout => this._renderWorkout(workout));
 
     console.log(this.#workouts);
   }
