@@ -10,13 +10,14 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class Workout {
   date = new Date();
-  id = (Date.now() + '').slice(-10);
+  //   id = (Date.now() + '').slice(-10);
   clicks = 0;
 
-  constructor(coords, distance, duration) {
+  constructor(coords, distance, duration, id = (Date.now() + '').slice(-10)) {
     this.coords = coords; //[lat, lng]
     this.distance = distance; //in km
     this.duration = duration; //in min
+    this.id = id;
   }
 
   _setDescription() {
@@ -292,8 +293,9 @@ class App {
 
     // using the public interface
     workout.click();
-    console.log('CLICKED!!!');
-    console.log(e.target);
+    this._setLocalStorage();
+    // console.log('CLICKED!!!');
+    // console.log(e.target);
   }
 
   _setLocalStorage() {
@@ -309,12 +311,12 @@ class App {
     data.forEach(work => {
       if (work.type === 'running') {
         // prettier-ignore
-        workout = new Running(work.coords, work.distance, work.duration, work.cadence);
+        workout = new Running(work.coords, work.distance, work.duration, work.cadence, work.id);
       }
 
       if (work.type === 'cycling') {
         // prettier-ignore
-        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain);
+        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain, work.id);
       }
 
       this.#workouts.push(workout);
