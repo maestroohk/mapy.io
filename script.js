@@ -10,19 +10,13 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class Workout {
   date = new Date();
-  //   id = (Date.now() + '').slice(-10);
+  id = (Date.now() + '').slice(-10);
   clicks = 0;
 
-  constructor(
-    coords,
-    distance,
-    duration,
-    id = Math.round((+(Date.now() + '').slice(-10) + coords[0]) / coords[1])
-  ) {
+  constructor(coords, distance, duration) {
     this.coords = coords; //[lat, lng]
     this.distance = distance; //in km
     this.duration = duration; //in min
-    this.id = id;
   }
 
   _setDescription() {
@@ -41,8 +35,8 @@ class Workout {
 class Running extends Workout {
   type = 'running';
 
-  constructor(coords, distance, duration, id, cadence) {
-    super(coords, distance, duration, id);
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
     this.cadence = cadence;
 
     this.calcPace();
@@ -59,8 +53,8 @@ class Running extends Workout {
 class Cycling extends Workout {
   type = 'cycling';
 
-  constructor(coords, distance, duration, id, elevationGain) {
-    super(coords, distance, duration, id);
+  constructor(coords, distance, duration, elevationGain) {
+    super(coords, distance, duration);
     this.elevationGain = elevationGain;
 
     this.calcSpeed();
@@ -321,12 +315,16 @@ class App {
     data.forEach(work => {
       if (work.type === 'running') {
         // prettier-ignore
-        workout = new Running(work.coords, work.distance, work.duration, work.cadence, work.id);
+        // workout = new Running(work.coords, work.distance, work.duration, work.cadence, work.id);
+        workout = new Running(work.coords, work.distance, work.duration, work.cadence);
+        workout.id = work.id;
       }
 
       if (work.type === 'cycling') {
         // prettier-ignore
-        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain, work.id);
+        // workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain, work.id);
+        workout = new Cycling(work.coords, work.distance, work.duration, work.elevationGain);
+        workout.id = work.id;
       }
 
       this.#workouts.push(workout);
